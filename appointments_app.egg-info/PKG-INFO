@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: appointments_app
+Version: 0.0.1
+Summary: Appointment Web Portal
+Author: Build With Hussain
+Author-email: hussain@frappe.io
+Requires-Dist: twilio==8.5.0
