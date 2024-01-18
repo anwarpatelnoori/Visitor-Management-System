@@ -36,7 +36,7 @@ class Appointment(Document):
 		if self.workflow_state == "Approved" and not self.is_already_in_queue():
 			self.otp = self.generate_otp()
 			self.save(ignore_permissions =True)
-			email_message = f'''<h2 style="font-family: Arial, sans-serif;">E-Pass Details</h2><table style="width: 100%; border-collapse: collapse;">
+			guest_email_message = f'''<h2 style="font-family: Arial, sans-serif;">E-Pass Details</h2><table style="width: 100%; border-collapse: collapse;">
     <tr>
         <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Detail</th>
         <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
@@ -67,10 +67,10 @@ class Appointment(Document):
     </tr>
 </table>'''
 			# frappe.msgprint('Appointment is confirmed and the otp {self.otp} has been sent to')
-			frappe.sendmail(recipients=[self.contact_number,self.meeting_host_email_id],sender='anwar@standardtouch.com',subject='E-Pass Status',message=email_message)
+			frappe.sendmail(recipients=[self.contact_number,self.meeting_host_email_id],sender='anwar@standardtouch.com',subject='E-Pass Status',message=guest_email_message)
 			self.add_to_appointment_queue()
 		if self.workflow_state == 'Rejected':
-			email_message = f'''<h2 style="font-family: Arial, sans-serif;">Appointment Rejected</h2><table style="width: 100%; border-collapse: collapse;">
+			guest_email_message = f'''<h2 style="font-family: Arial, sans-serif;">Appointment Rejected</h2><table style="width: 100%; border-collapse: collapse;">
     <tr>
         <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Detail</th>
         <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
@@ -89,7 +89,7 @@ class Appointment(Document):
     </tr>
 </table>'''
 			# frappe.msgprint('Appointment is confirmed and the otp {self.otp} has been sent to')
-			frappe.sendmail(recipients=[self.contact_number,self.meeting_host_email_id],sender='anwar@standardtouch.com',subject='E-Pass Status',message=email_message)
+			frappe.sendmail(recipients=[self.contact_number,self.meeting_host_email_id],sender='anwar@standardtouch.com',subject='Appointment Rejected',message=guest_email_message)
 			# frappe.msgprint('Your Appointment is not scheduled today. Host is not available')
 	def is_already_in_queue(self):
     ##### Check if the appointment is already in the queue
