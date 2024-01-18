@@ -72,5 +72,7 @@ appointments_app/fixtures/color.json
 appointments_app/fixtures/website_theme.json
 appointments_app/templates/__init__.py
 appointments_app/templates/pages/__init__.py
+appointments_app/www/__init__.py
 appointments_app/www/success.html
 appointments_app/www/success.py
+appointments_app/www/__pycache__/__init__.py
